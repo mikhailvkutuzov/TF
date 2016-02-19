@@ -1,9 +1,5 @@
 package test.smoketest.core;
 
-/**
- * Created by mikhail.kutuzov on 12.02.2016.
- */
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +22,6 @@ public class SimpleNavigator implements Navigator {
     public SimpleNavigator(WebBrowsers browser) {
         switch (browser) {
             case Chrome:
-                System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
             case Firefox:
