@@ -16,6 +16,7 @@ public class GoogleTest {
         Navigator navigator = new SimpleNavigator(WebBrowsers.Chrome);
         GooglePage mainPage = navigator.open(GooglePage.class, "http://google.com/");
         mainPage.getLogo().click();
+        mainPage.getDriver().close();
     }
 
 }

@@ -1,5 +1,7 @@
 package test.smoketest.test;
 
+import test.smoketest.core.WebBrowsers;
+
 import java.time.Duration;
 import java.time.Instant;
 
@@ -12,17 +14,17 @@ public abstract class TestCase {
 
     public abstract String getDescription();
 
-    protected abstract void test();
+    protected abstract void test(WebBrowsers browser);
 
     /**
      * Время исполнения теста в секундах.
      * @throws TestResult исключение времени исполнения теста
      * @return
      */
-    public TestResult action() {
+    public TestResult action(WebBrowsers browser) {
         Instant begin = Instant.now();
         try {
-            test();
+            test(browser);
             return new TestResult((int) Duration.between(begin, Instant.now()).getSeconds(), "");
         } catch (Exception e) {
             return new TestResult((int) Duration.between(begin, Instant.now()).getSeconds(), e.getMessage());

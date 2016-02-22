@@ -1,5 +1,7 @@
 package test.smoketest.test;
 
+import test.smoketest.core.WebBrowsers;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,10 +17,10 @@ public abstract class TestComplect {
     public abstract List<TestCase> getTestCases();
 
 
-    public List<TestAndTestResult> action(){
+    public List<TestAndTestResult> action(WebBrowsers browser){
         return getTestCases()
                 .stream()
-                .map(t -> new TestAndTestResult(t, t.action()))
+                .map(t -> new TestAndTestResult(t, t.action(browser)))
                 .collect(Collectors.toList());
     }
 }
