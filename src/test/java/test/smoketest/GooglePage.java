@@ -18,8 +18,19 @@ public class GooglePage  extends PageBase{
         return "";
     }
 
+    class OnTheSamePage extends Button {
+        public OnTheSamePage(WebDriver selenium, String selector) {
+            super(selenium, selector);
+        }
+
+        @Override
+        protected PageBase getPage() {
+            return GooglePage.this;
+        }
+    }
+
     public Button getLogo(){
-        return new Button(getDriver(), ".//*[@id='hplogo']");
+        return new OnTheSamePage(getDriver(), ".//*[@id='hplogo']");
     }
 
 }
