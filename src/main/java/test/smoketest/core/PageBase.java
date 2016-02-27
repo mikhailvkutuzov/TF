@@ -2,24 +2,44 @@ package test.smoketest.core;
 
 import org.openqa.selenium.WebDriver;
 
-public class PageBase {
+/**
+ * Расширения этого класса содержат в себе код для доступа к
+ * элментам html страницы.
+ */
+public abstract class PageBase {
     private WebDriver driver;
-    private String pageUrl;
+    private String projectUrl;
 
+    /**
+     * Для создания страницы нужен WebDriver и url проекта.
+     * @param driver
+     * @param projectUrl
+     */
+    public PageBase(WebDriver driver, String projectUrl) {
+        this.driver = driver;
+        this.projectUrl = projectUrl;
+    }
+
+    /**
+     * Вернуть WebDriver в котором открылась страница.
+     * @return
+     */
     public WebDriver getDriver() {
         return driver;
     }
 
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
+    /**
+     * Вернуть url страницы относительно корневого элемента проекта.
+     * @return
+     */
+    protected abstract String getRelativeUrl();
 
-    public String getPageUrl() {
-        return pageUrl;
-    }
-
-    public void setPageUrl(String pageUrl) {
-        this.pageUrl = pageUrl;
+    /**
+     * Вернуть полный url страницы.
+     * @return
+     */
+    public String getUrl(){
+        return projectUrl + getRelativeUrl();
     }
 
 }

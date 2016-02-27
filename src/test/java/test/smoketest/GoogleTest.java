@@ -2,7 +2,7 @@ package test.smoketest;
 
 import org.junit.Test;
 import test.smoketest.core.Navigator;
-import test.smoketest.core.SimpleNavigator;
+import test.smoketest.core.ProjectNavigator;
 import test.smoketest.core.WebBrowsers;
 
 /**
@@ -13,8 +13,8 @@ public class GoogleTest {
     @Test
     public void open(){
         System.setProperty("webdriver.chrome.driver", "e:\\drivers\\chromedriver.exe");
-        Navigator navigator = new SimpleNavigator(WebBrowsers.Chrome);
-        GooglePage mainPage = navigator.open(GooglePage.class, "http://google.com/");
+        Navigator navigator = new ProjectNavigator(WebBrowsers.Chrome, "http://google.com/");
+        GooglePage mainPage = navigator.open(GooglePage.class);
         mainPage.getLogo().click();
         mainPage.getDriver().close();
     }

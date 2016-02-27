@@ -8,18 +8,22 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Action;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Класс отвечает за открытие и создание страниц в проекте.
  * Created by mkutuzov on 04.01.2016.
  */
-public class SimpleNavigator implements Navigator {
+public class ProjectNavigator implements Navigator {
     private WebDriver driver;
     private Dimension size = new Dimension(1600, 900);
+    private String url;
 
-    public SimpleNavigator(WebBrowsers browser) {
+    public ProjectNavigator(WebBrowsers browser, String url) {
+        this.url = url;
         switch (browser) {
             case Chrome:
                 driver = new ChromeDriver();
@@ -35,12 +39,10 @@ public class SimpleNavigator implements Navigator {
     }
 
     @Override
-    public <T extends PageBase> T open(Class<T> template, String urlParameters) {
+    public <T extends PageBase> T open(Class<T> template, String url) {
         try {
-            T t = create(template);
-            t.setPageUrl(urlParameters);
-            t.setDriver(driver);
-            driver.navigate().to(new URL(t.getPageUrl()));
+            T t = create(template, url);
+            driver.navigate().to(new URL(t.getUrl()));
             return t;
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException();
@@ -49,9 +51,8 @@ public class SimpleNavigator implements Navigator {
 
     public <T extends PageBase> T open(Class<T> template) {
         try {
-            T t = create(template);
-            t.setDriver(driver);
-            driver.navigate().to(new URL(t.getPageUrl()));
+            T t = create(template, url);
+            driver.navigate().to(new URL(t.getUrl()));
             return t;
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException();
@@ -59,19 +60,21 @@ public class SimpleNavigator implements Navigator {
     }
 
 
-    private <T extends PageBase> T create(Class<T> template) {
+    private <T extends PageBase> T create(Class<T> template, String projectUrl) {
         try {
-            T t = template.newInstance();
-            return t;
-        } catch (InstantiationException | IllegalAccessException e) {
-            throw new IllegalArgumentException();
+            Class[] parameters = new Class[2];
+            parameters[0] = WebDriver.class;
+            parameters[1] = String.class;
+            return template.getDeclaredConstructor(parameters).newInstance(driver, projectUrl);
+        } catch (InstantiationException | IllegalAccessException
+                 |NoSuchMethodException |InvocationTargetException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public <T extends PageBase> T navigate(Class<T> template, Action action) {
-        T target = create(template);
-        target.setDriver(driver);
+        T target = create(template, url);
         action.perform();
         waitLoad();
         assertErrorPage(target);
@@ -91,8 +94,8 @@ public class SimpleNavigator implements Navigator {
             location = location.substring(0, paramsStart);
         }
 
-        if (!location.endsWith(target.getPageUrl())) {
-            throw new RuntimeException("Expected URL " + target.getPageUrl() + "  but was " + location);
+        if (!location.equals(target.getUrl())) {
+            throw new RuntimeException("Expected URL " + target.getUrl() + "  but was " + location);
         }
     }
 
