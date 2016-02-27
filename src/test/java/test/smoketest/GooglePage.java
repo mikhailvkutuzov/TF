@@ -2,6 +2,7 @@ package test.smoketest;
 
 import org.openqa.selenium.WebDriver;
 import test.smoketest.controls.Button;
+import test.smoketest.controls.TheSamePageButton;
 import test.smoketest.core.PageBase;
 
 /**
@@ -18,19 +19,9 @@ public class GooglePage  extends PageBase{
         return "";
     }
 
-    class OnTheSamePage extends Button {
-        public OnTheSamePage(WebDriver selenium, String selector) {
-            super(selenium, selector);
-        }
-
-        @Override
-        protected PageBase getPage() {
-            return GooglePage.this;
-        }
-    }
 
     public Button getLogo(){
-        return new OnTheSamePage(getDriver(), ".//*[@id='hplogo']");
+        return new TheSamePageButton(this, getDriver(), ".//*[@id='hplogo']");
     }
 
 }

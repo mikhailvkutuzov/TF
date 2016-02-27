@@ -76,4 +76,9 @@ public class ProjectNavigator implements Navigator {
         action.perform();
         return target;
     }
+
+    @Override
+    public <T extends PageBase> T navigate(Class<T> template) {
+        return create(template, url);
+    }
 }

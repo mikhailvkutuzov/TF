@@ -29,4 +29,6 @@ public interface Navigator {
      * @return
      */
     <T extends PageBase> T navigate(Class<T> template, Action action);
+
+    <T extends PageBase> T navigate(Class<T> template);
 }
