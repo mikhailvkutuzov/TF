@@ -14,17 +14,17 @@ public abstract class TestCase {
 
     public abstract String getDescription();
 
-    protected abstract void test(WebBrowsers browser);
+    protected abstract void test(WebBrowsers browser, String url);
 
     /**
      * Время исполнения теста в секундах.
      * @throws TestResult исключение времени исполнения теста
      * @return
      */
-    public TestResult action(WebBrowsers browser) {
+    public TestResult action(WebBrowsers browser, String url) {
         Instant begin = Instant.now();
         try {
-            test(browser);
+            test(browser, url);
             return new TestResult((int) Duration.between(begin, Instant.now()).getSeconds(), "");
         } catch (Exception e) {
             return new TestResult((int) Duration.between(begin, Instant.now()).getSeconds(), e.getMessage());

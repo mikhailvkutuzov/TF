@@ -17,10 +17,10 @@ public abstract class TestComplect {
     public abstract List<TestCase> getTestCases();
 
 
-    public List<TestAndTestResult> action(WebBrowsers browser){
+    public List<TestAndTestResult> action(WebBrowsers browser, String url){
         return getTestCases()
                 .stream()
-                .map(t -> new TestAndTestResult(t, t.action(browser)))
+                .map(t -> new TestAndTestResult(t, t.action(browser, url)))
                 .collect(Collectors.toList());
     }
 }
