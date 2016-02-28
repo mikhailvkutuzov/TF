@@ -81,4 +81,9 @@ public class ProjectNavigator implements Navigator {
     public <T extends PageBase> T navigate(Class<T> template) {
         return create(template, url);
     }
+
+    @Override
+    public WebDriver getDriver() {
+        return driver;
+    }
 }

@@ -1,5 +1,6 @@
 package test.smoketest.core;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Action;
 
 public interface Navigator {
@@ -31,4 +32,6 @@ public interface Navigator {
     <T extends PageBase> T navigate(Class<T> template, Action action);
 
     <T extends PageBase> T navigate(Class<T> template);
+
+    WebDriver getDriver();
 }
