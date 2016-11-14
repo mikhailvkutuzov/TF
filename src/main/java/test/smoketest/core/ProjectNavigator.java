@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Action;
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Класс отвечает за открытие и создание страниц в проекте.
@@ -33,6 +34,7 @@ public class ProjectNavigator implements Navigator {
                 driver = new InternetExplorerDriver();
                 break;
         }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().setSize(size);
     }
 
