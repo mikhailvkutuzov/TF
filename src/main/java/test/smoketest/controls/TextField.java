@@ -1,6 +1,5 @@
 package test.smoketest.controls;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -14,18 +13,18 @@ public class TextField extends ControlBase {
     public void setText(String text)
     {
 
-        getSelenium().findElement(By.xpath(selector)).sendKeys(text);
+        getSelenium().until(getElement).sendKeys(text);
     }
 
     @Override
     public String toString()
     {
-        return getSelenium().findElement(By.xpath(selector)).getText();
+        return getSelenium().until(getElement).getText();
     }
 
     public void click()
     {
-        getSelenium().findElement(By.xpath(selector)).click();
+        getSelenium().until(getElement).click();
     }
 
     public String getSelector()
@@ -35,6 +34,6 @@ public class TextField extends ControlBase {
 
     public void clearText()
     {
-        getSelenium().findElement(By.xpath(selector)).clear();
+        getSelenium().until(getElement).clear();
     }
 }

@@ -1,6 +1,5 @@
 package test.smoketest.controls;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -18,21 +17,21 @@ public class Dropdown extends ControlBase {
 
     public String[] getValues()
     {
-            WebElement SelectElement = getSelenium().findElement(By.xpath(selector));
+            WebElement SelectElement = getSelenium().until(getElement);
             Select select = new Select(SelectElement);
             List<WebElement> options = select.getOptions();
             return options.stream().map(e -> e.getText()).collect(Collectors.toList()).toArray(new String[]{});
     }
 
     public String getValue() {
-            WebElement SelectElement = getSelenium().findElement(By.xpath(selector));
+            WebElement SelectElement = getSelenium().until(getElement);
             Select select = new Select(SelectElement);
             return select.getFirstSelectedOption().getAttribute("value");
     }
 
     public void setValue(String value)
         {
-            WebElement SelectElement = getSelenium().findElement(By.xpath(selector));
+            WebElement SelectElement = getSelenium().until(getElement);
             Select select = new Select(SelectElement);
             select.selectByValue(select.getFirstSelectedOption().getAttribute("value") + value);
         }
@@ -46,7 +45,7 @@ public class Dropdown extends ControlBase {
 
     public void selectItem(String itemName)
     {
-        WebElement SelectElement = getSelenium().findElement(By.xpath(selector));
+        WebElement SelectElement = getSelenium().until(getElement);
         Select select = new Select(SelectElement);
         select.selectByVisibleText(itemName);
     }

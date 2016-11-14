@@ -1,9 +1,11 @@
 package test.smoketest.controls;
 
+import com.google.common.base.Function;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -12,30 +14,35 @@ import java.util.List;
  */
 
 public class ControlBase {
-    private WebDriver selenium;
+    private WebDriver driver;
+    private WebDriverWait selenium;
     protected String selector;
 
     public ControlBase(WebDriver selenium, String selector) {
-        this.selenium = selenium;
+        this.driver = selenium;
+        this.selenium = new WebDriverWait(selenium, 10);
         this.selector = selector;
     }
 
-    protected WebDriver getSelenium() {
+    protected Function<WebDriver, WebElement> getElement = i -> i.findElement(By.xpath(selector));
+    protected Function<WebDriver, List<WebElement>> getElements = i -> i.findElements(By.xpath(selector));
+
+    protected WebDriverWait getSelenium() {
         return selenium;
     }
 
     public String getValueAttribute(String n) {
-        return selenium.findElement(By.xpath(selector)).getAttribute(n);
+        return selenium.until(getElement).getAttribute(n);
     }
 
     public boolean isVisible() {
-        return selenium.findElement(By.xpath(selector)).isDisplayed();
+        return selenium.until(getElement).isDisplayed();
     }
 
     public boolean isCreated() {
         boolean existenceElement = false;
 
-        List<WebElement> elements = selenium.findElements(By.xpath(selector));
+        List<WebElement> elements = selenium.until(getElements);
         if (elements.size() == 1) {
             existenceElement = true;
         }
@@ -46,11 +53,11 @@ public class ControlBase {
     }
 
     public int amountOfElements() {
-        return selenium.findElements(By.xpath(selector)).size();
+        return selenium.until(getElements).size();
     }
 
     public void mouseOnElement() {
-        Actions actions = new Actions(selenium);
-        actions.moveToElement(selenium.findElement(By.xpath(selector))).build().perform();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(By.xpath(selector))).build().perform();
     }
 }

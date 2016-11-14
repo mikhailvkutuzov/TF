@@ -1,6 +1,5 @@
 package test.smoketest.controls;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -12,16 +11,16 @@ public class CheckBox extends ControlBase {
     }
 
     public boolean getValue() {
-        return Boolean.parseBoolean(getSelenium().findElement(By.xpath(selector)).getAttribute("value"));
+        return Boolean.parseBoolean(getSelenium().until(getElement).getAttribute("value"));
     }
 
     public void setValue(boolean check) {
         if (getValue() != check) {
-            getSelenium().findElement(By.xpath(selector)).click();
+            getSelenium().until(getElement).click();
         }
     }
 
     public void click() {
-        getSelenium().findElement(By.xpath(selector)).click();
+        getSelenium().until(getElement).click();
     }
 }

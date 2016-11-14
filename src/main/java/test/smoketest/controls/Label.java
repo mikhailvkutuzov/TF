@@ -1,6 +1,5 @@
 package test.smoketest.controls;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -13,7 +12,7 @@ public class Label extends ControlBase {
 
     public String getText()
     {
-        return getSelenium().findElement(By.xpath(selector)).getText();
+        return getSelenium().until(getElement).getText();
     }
 
     public String getSelector()

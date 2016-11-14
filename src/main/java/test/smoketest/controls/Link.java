@@ -1,6 +1,5 @@
 package test.smoketest.controls;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -13,11 +12,11 @@ public class Link extends ControlBase {
 
     public void click()
     {
-        getSelenium().findElement(By.xpath(selector)).click();
+        getSelenium().until(getElement).click();
     }
 
     public String getTextLink()
     {
-        return getSelenium().findElement(By.xpath(selector)).getText();
+        return getSelenium().until(getElement).getText();
     }
 }

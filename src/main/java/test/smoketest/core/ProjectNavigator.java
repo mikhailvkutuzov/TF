@@ -34,7 +34,7 @@ public class ProjectNavigator implements Navigator {
                 driver = new InternetExplorerDriver();
                 break;
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
         driver.manage().window().setSize(size);
     }
 

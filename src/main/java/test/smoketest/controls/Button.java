@@ -1,6 +1,5 @@
 package test.smoketest.controls;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import test.smoketest.core.PageBase;
 
@@ -15,7 +14,7 @@ public abstract class Button extends ControlBase {
 
     public PageBase click()
     {
-        getSelenium().findElement(By.xpath(selector)).click();
+        getSelenium().until(getElement).click();
         return getPage();
     }
 
@@ -27,7 +26,7 @@ public abstract class Button extends ControlBase {
 
     public String getText()
     {
-        return getSelenium().findElement(By.xpath(selector)).getText();
+        return getSelenium().until(getElement).getText();
     }
 
 }
