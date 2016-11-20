@@ -1,5 +1,6 @@
 package test.smoketest.controls;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import test.smoketest.core.PageBase;
 
@@ -12,9 +13,14 @@ public abstract class Button extends ControlBase {
         super(selenium, selector);
     }
 
-    public PageBase click()
+    public PageBase clickSameTab()
     {
-        getSelenium().until(getElement).click();
+        click();
+        return getPage();
+    }
+
+    public PageBase clickNewTab() {
+        getSelenium().until(getElement).sendKeys(Keys.chord(Keys.CONTROL, Keys.RETURN));
         return getPage();
     }
 

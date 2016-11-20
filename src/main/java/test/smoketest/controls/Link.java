@@ -10,11 +10,6 @@ public class Link extends ControlBase {
         super(selenium, selector);
     }
 
-    public void click()
-    {
-        getSelenium().until(getElement).click();
-    }
-
     public String getTextLink()
     {
         return getSelenium().until(getElement).getText();

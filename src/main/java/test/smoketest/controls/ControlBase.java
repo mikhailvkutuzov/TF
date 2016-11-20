@@ -2,6 +2,7 @@ package test.smoketest.controls;
 
 import com.google.common.base.Function;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -50,6 +51,10 @@ public class ControlBase {
             throw new RuntimeException("Ошибка проверки существования элемента с селектором - '" + selector + "'. Было найдено несколько элементов, вместо одного. Необходимо уточнить XPATH элемента.");
         }
         return existenceElement;
+    }
+
+    public void click() {
+        getSelenium().until(getElement).click();
     }
 
     public int amountOfElements() {

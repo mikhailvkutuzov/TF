@@ -16,11 +16,7 @@ public class CheckBox extends ControlBase {
 
     public void setValue(boolean check) {
         if (getValue() != check) {
-            getSelenium().until(getElement).click();
+            click();
         }
-    }
-
-    public void click() {
-        getSelenium().until(getElement).click();
     }
 }

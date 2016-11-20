@@ -1,6 +1,7 @@
 package test.smoketest.controls;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  * Created by mkutuzov on 10.01.2016.
@@ -19,12 +20,9 @@ public class TextField extends ControlBase {
     @Override
     public String toString()
     {
-        return getSelenium().until(getElement).getText();
-    }
 
-    public void click()
-    {
-        getSelenium().until(getElement).click();
+        WebElement element = getSelenium().until(getElement);
+        return element.getText();
     }
 
     public String getSelector()
