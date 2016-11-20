@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Action;
+import test.smoketest.controls.ControlBase;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
@@ -87,5 +88,21 @@ public class ProjectNavigator implements Navigator {
     @Override
     public WebDriver getDriver() {
         return driver;
+    }
+
+    @Override
+    public boolean waitForAnAttribute(ControlBase element, String name, String value, int seconds) {
+        int i = 0 ;
+        while (i < seconds) {
+            if(element.getValueAttribute(name).contains(value)) {
+                return true;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+            i++;
+        }
+        return false;
     }
 }

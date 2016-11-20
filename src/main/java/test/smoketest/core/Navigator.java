@@ -2,6 +2,7 @@ package test.smoketest.core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Action;
+import test.smoketest.controls.ControlBase;
 
 public interface Navigator {
 
@@ -34,4 +35,15 @@ public interface Navigator {
     <T extends PageBase> T navigate(Class<T> template);
 
     WebDriver getDriver();
+
+    /**
+     * Дождаться установки аттрибута элемента element в некоторое значение.
+     * @param element
+     * @param name имя аттрибута
+     * @param value значение которое содержится в аттрибуте
+     * @param seconds количество секунд которое будем пытаться получить значение
+     * @return false  - если за время seconds секунд не нашли значение, иначе - true
+     */
+    boolean waitForAnAttribute(ControlBase element, String name, String value, int seconds);
+
 }
