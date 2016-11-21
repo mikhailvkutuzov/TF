@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * Created by mikhail.kutuzov on 18.02.2016.
  */
-public abstract class TestComplect {
+public abstract class TestSuite {
 
     public abstract String getName();
 

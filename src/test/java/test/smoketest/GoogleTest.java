@@ -14,9 +14,13 @@ public class GoogleTest {
     public void open(){
         System.setProperty("webdriver.chrome.driver", "target/classes/chromedriver.exe");
         Navigator navigator = new ProjectNavigator(WebBrowsers.Chrome, "http://google.com/");
-        GooglePage mainPage = navigator.open(GooglePage.class);
-        mainPage.getLogo().click();
-        mainPage.getDriver().close();
+        try {
+            GooglePage mainPage = navigator.open(GooglePage.class);
+            mainPage.getLogo().click();
+        } finally {
+            navigator.getDriver().close();
+            navigator.getDriver().quit();
+        }
     }
 
 }
