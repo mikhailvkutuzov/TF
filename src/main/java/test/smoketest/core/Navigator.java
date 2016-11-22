@@ -3,6 +3,7 @@ package test.smoketest.core;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Action;
 import test.smoketest.controls.ControlBase;
+import test.smoketest.controls.TextContentElement;
 
 public interface Navigator {
 
@@ -46,4 +47,23 @@ public interface Navigator {
      */
     boolean waitForAnAttribute(ControlBase element, String name, String value, int seconds);
 
+    /**
+     * Дождаться исчезновения значения value аттрибута элемента element.
+     * @param element
+     * @param name
+     * @param value
+     * @param seconds
+     * @return
+     */
+    boolean waitForAnAttributeAbsence(ControlBase element, String name, String value, int seconds);
+
+    /**
+     * Дождаться появления содержимого элемента element.
+     * @param element
+     * @param name
+     * @param value
+     * @param seconds
+     * @return
+     */
+    boolean waitForElementContent(TextContentElement element, String name, String value, int seconds);
 }

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by mkutuzov on 10.01.2016.
  */
-public class Label extends ControlBase {
+public class Label extends ControlBase implements TextContentElement {
     public Label(WebDriver selenium, String selector) {
         super(selenium, selector);
     }

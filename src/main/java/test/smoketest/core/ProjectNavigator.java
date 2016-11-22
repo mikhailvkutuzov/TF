@@ -7,11 +7,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Action;
 import test.smoketest.controls.ControlBase;
+import test.smoketest.controls.TextContentElement;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 /**
  * Класс отвечает за открытие и создание страниц в проекте.
@@ -92,9 +93,23 @@ public class ProjectNavigator implements Navigator {
 
     @Override
     public boolean waitForAnAttribute(ControlBase element, String name, String value, int seconds) {
+        return waitForCondition(seconds, () -> element.getValueAttribute(name).contains(value));
+    }
+
+    @Override
+    public boolean waitForAnAttributeAbsence(ControlBase element, String name, String value, int seconds) {
+        return waitForCondition(seconds, () -> !element.getValueAttribute(name).contains(value));
+    }
+
+    @Override
+    public boolean waitForElementContent(TextContentElement textElement, String name, String value, int seconds) {
+        return waitForCondition(seconds, () -> textElement.getText().contains(value));
+    }
+
+    private boolean waitForCondition(int seconds, Supplier<Boolean> testElement) {
         int i = 0 ;
         while (i < seconds) {
-            if(element.getValueAttribute(name).contains(value)) {
+            if(testElement.get()) {
                 return true;
             }
             try {
