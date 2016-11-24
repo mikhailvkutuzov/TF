@@ -7,28 +7,16 @@ import test.smoketest.core.PageBase;
 /**
  * Created by mkutuzov on 10.01.2016.
  */
-public abstract class Button extends ControlBase {
+public abstract class Button extends AbstractOpenPage {
 
     public Button(WebDriver selenium, String selector) {
         super(selenium, selector);
-    }
-
-    public PageBase clickSameTab()
-    {
-        click();
-        return getPage();
     }
 
     public PageBase clickNewTab() {
         getSelenium().until(getElement).sendKeys(Keys.chord(Keys.CONTROL, Keys.RETURN));
         return getPage();
     }
-
-    /**
-     * Вернуть страницу которая открывается по нажатию на кнопку.
-     * @return
-     */
-    protected abstract PageBase getPage();
 
     public String getText()
     {

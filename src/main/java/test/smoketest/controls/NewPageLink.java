@@ -4,12 +4,12 @@ import test.smoketest.core.Navigator;
 import test.smoketest.core.PageBase;
 
 /**
- * Created by mikhail.kutuzov on 28.02.2016.
+ * Created by mikhail.kutuzov on 24.11.2016.
  */
-public abstract class NewPageButton extends Button {
+public abstract class NewPageLink extends Link {
     private Navigator navigator;
 
-    public NewPageButton(Navigator navigator, String selector) {
+    public NewPageLink(Navigator navigator, String selector) {
         super(navigator.getDriver(), selector);
         this.navigator = navigator;
     }
