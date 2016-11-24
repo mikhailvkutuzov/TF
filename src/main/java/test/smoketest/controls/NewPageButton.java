@@ -1,5 +1,6 @@
 package test.smoketest.controls;
 
+import org.openqa.selenium.WebDriver;
 import test.smoketest.core.Navigator;
 import test.smoketest.core.PageBase;
 
@@ -9,8 +10,8 @@ import test.smoketest.core.PageBase;
 public abstract class NewPageButton extends Button {
     private Navigator navigator;
 
-    public NewPageButton(Navigator navigator, String selector) {
-        super(navigator.getDriver(), selector);
+    public NewPageButton(WebDriver driver, Navigator navigator, String selector) {
+        super(driver, selector);
         this.navigator = navigator;
     }
 

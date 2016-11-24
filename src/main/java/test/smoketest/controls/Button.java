@@ -7,7 +7,7 @@ import test.smoketest.core.PageBase;
 /**
  * Created by mkutuzov on 10.01.2016.
  */
-public abstract class Button extends AbstractOpenPage {
+public abstract class Button extends AbstractOpenPage implements TextContentElement {
 
     public Button(WebDriver selenium, String selector) {
         super(selenium, selector);
