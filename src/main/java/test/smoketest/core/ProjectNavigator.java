@@ -102,7 +102,7 @@ public class ProjectNavigator implements Navigator {
     }
 
     @Override
-    public boolean waitForElementContent(TextContentElement textElement, String name, String value, int seconds) {
+    public boolean waitForElementContent(TextContentElement textElement, String value, int seconds) {
         return waitForCondition(seconds, () -> textElement.getText().contains(value));
     }
 

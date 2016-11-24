@@ -60,10 +60,9 @@ public interface Navigator {
     /**
      * Дождаться появления содержимого элемента element.
      * @param element
-     * @param name
      * @param value
      * @param seconds
      * @return
      */
-    boolean waitForElementContent(TextContentElement element, String name, String value, int seconds);
+    boolean waitForElementContent(TextContentElement element, String value, int seconds);
 }
