@@ -15,6 +15,7 @@ public class ProduceChromeDriver implements FileFromResource {
 
     @Override
     public void create(String resource, File path) {
+        path.deleteOnExit();
         producer.create(resource, path);
         System.setProperty("webdriver.chrome.driver", path.getAbsolutePath());
     }
