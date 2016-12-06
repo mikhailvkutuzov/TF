@@ -25,9 +25,9 @@ public abstract class TestCase {
         Instant begin = Instant.now();
         try {
             test(browser, url);
-            return new TestResult((int) Duration.between(begin, Instant.now()).getSeconds(), "");
-        } catch (Exception e) {
-            return new TestResult((int) Duration.between(begin, Instant.now()).getSeconds(), e.getMessage());
+            return new TestResult((int) Duration.between(begin, Instant.now()).getSeconds(), "", new StackTraceElement[0], false);
+        } catch (Throwable t) {
+            return new TestResult((int) Duration.between(begin, Instant.now()).getSeconds(), t.getMessage(), t.getStackTrace(), true);
         }
     }
 }

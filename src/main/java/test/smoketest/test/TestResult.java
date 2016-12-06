@@ -6,10 +6,14 @@ package test.smoketest.test;
 public class TestResult {
     private int time;
     private String message;
+    private StackTraceElement[] trace;
+    private boolean error;
 
-    public TestResult(int time, String message) {
+    public TestResult(int time, String message, StackTraceElement[] trace, boolean error) {
         this.time = time;
         this.message = message;
+        this.trace = trace;
+        this.error = error;
     }
 
     public int getTime() {
@@ -18,5 +22,13 @@ public class TestResult {
 
     public String getMessage() {
         return message;
+    }
+
+    public StackTraceElement[] getTrace() {
+        return trace;
+    }
+
+    public boolean isError() {
+        return error;
     }
 }
