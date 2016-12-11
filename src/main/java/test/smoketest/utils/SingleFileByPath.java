@@ -25,7 +25,7 @@ public class SingleFileByPath implements FileFromResource {
             throw new UnknownError();
         } catch (IOException e) {
             path.delete();
-            throw new ReadingError();
+            throw new ReadingError(e);
         } finally {
             try {
                 input.close();
@@ -43,7 +43,11 @@ public class SingleFileByPath implements FileFromResource {
 
     public static final class WritingError extends RuntimeException {}
 
-    public static final class ReadingError extends RuntimeException {}
+    public static final class ReadingError extends RuntimeException {
+        public ReadingError(Throwable cause) {
+            super(cause);
+        }
+    }
 
     public static final class CouldNotClose extends RuntimeException {}
 
