@@ -1,6 +1,5 @@
 package test.smoketest.controls;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import test.smoketest.core.PageBase;
 
@@ -17,12 +16,7 @@ public abstract class Link extends AbstractOpenPage implements TextContentElemen
         return getSelenium().until(getElement).getText();
     }
 
-    public PageBase clickNewTab() {
-        getSelenium().until(getElement).sendKeys(Keys.chord(Keys.CONTROL, Keys.RETURN));
-        return getPage();
-    }
-
-    public String getREference() {
+    public String getReference() {
         return getSelenium().until(getElement).getAttribute("href");
     }
 

@@ -33,7 +33,7 @@ public class DriverRetriever {
     public void chrome(){
         File produced = new File("chromedriver.exe");
         new ProduceChromeDriver(new SingleFileByPath()).create("chromedriver.exe", new File("chromedriver.exe"));
-        Assert.assertFalse(produced.exists());
+        Assert.assertTrue(produced.exists());
     }
 
 }
