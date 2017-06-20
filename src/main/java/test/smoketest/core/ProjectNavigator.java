@@ -52,15 +52,14 @@ public class ProjectNavigator implements Navigator {
     }
 
     public <T extends PageBase> T open(Class<T> template) {
-        try {
-            T t = create(template, url);
-            driver.navigate().to(new URL(t.getUrl()));
-            return t;
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+        return open(template, url);
     }
 
+    @Override
+    public void close() {
+        driver.getWindowHandles().forEach(h -> driver.switchTo().window(h).close());
+        driver.quit();
+    }
 
     private <T extends PageBase> T create(Class<T> template, String projectUrl) {
         try {

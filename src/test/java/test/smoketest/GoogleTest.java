@@ -18,8 +18,7 @@ public class GoogleTest {
             GooglePage mainPage = navigator.open(GooglePage.class);
             mainPage.getLogo().click();
         } finally {
-            navigator.getDriver().close();
-            navigator.getDriver().quit();
+            navigator.close();
         }
     }
 

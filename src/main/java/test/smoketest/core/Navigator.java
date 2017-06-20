@@ -24,6 +24,8 @@ public interface Navigator {
      */
     <T extends PageBase> T open(Class<T> template);
 
+    void close();
+
     /**
      * Для уже открытой страницы создадим PageBase.
      * @param template
