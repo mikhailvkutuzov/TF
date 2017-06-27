@@ -16,4 +16,20 @@ public interface FileFromResource {
      */
     void create(String resource, File path);
 
+
+    final class WritingError extends RuntimeException {
+    }
+
+    final class ReadingError extends RuntimeException {
+        ReadingError(Throwable cause) {
+            super(cause);
+        }
+    }
+
+    final class CouldNotClose extends RuntimeException {
+    }
+
+    final class UnknownError extends RuntimeException {
+    }
+
 }
