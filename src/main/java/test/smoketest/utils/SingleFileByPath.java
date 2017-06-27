@@ -1,10 +1,6 @@
 package test.smoketest.utils;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.attribute.PosixFilePermission;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * This class intended to create file from a single project resource.
@@ -28,12 +24,6 @@ public class SingleFileByPath implements FileFromResource {
                     throw new WritingError();
                 }
             }
-            Set<PosixFilePermission> permissions = new HashSet<>();
-            permissions.add(PosixFilePermission.OWNER_READ);
-            permissions.add(PosixFilePermission.OWNER_EXECUTE);
-            permissions.add(PosixFilePermission.OTHERS_READ);
-            permissions.add(PosixFilePermission.OTHERS_EXECUTE);
-            Files.setPosixFilePermissions(path.toPath(), permissions);
         } catch (FileNotFoundException e) {
             throw new UnknownError();
         } catch (IOException e) {
@@ -54,21 +44,6 @@ public class SingleFileByPath implements FileFromResource {
                 }
             }
         }
-    }
-
-    private static final class WritingError extends RuntimeException {
-    }
-
-    private static final class ReadingError extends RuntimeException {
-        ReadingError(Throwable cause) {
-            super(cause);
-        }
-    }
-
-    private static final class CouldNotClose extends RuntimeException {
-    }
-
-    private static final class UnknownError extends RuntimeException {
     }
 
 }
