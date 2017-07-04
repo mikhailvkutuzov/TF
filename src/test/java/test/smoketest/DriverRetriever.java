@@ -2,10 +2,7 @@ package test.smoketest;
 
 import org.junit.Assert;
 import org.junit.Test;
-import test.smoketest.utils.ExecutableResource;
-import test.smoketest.utils.FileFromResource;
-import test.smoketest.utils.ProduceChromeDriver;
-import test.smoketest.utils.SingleFileByPath;
+import test.smoketest.utils.*;
 
 import java.io.File;
 
@@ -33,7 +30,8 @@ public class DriverRetriever {
     @Test
     public void chrome(){
         File produced = new File("chromedriver.exe");
-        new ProduceChromeDriver(new ExecutableResource(new SingleFileByPath())).create("chromedriver.exe", new File("chromedriver.exe"));
+        new ProduceChromeDriver(new DeterminateExtensionResource(new ExecutableResource(new SingleFileByPath())))
+                .create("chromedriver", produced);
         Assert.assertTrue(produced.exists());
     }
 
