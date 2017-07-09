@@ -37,7 +37,7 @@ public class ProjectNavigator implements Navigator {
                 break;
         }
 
-        driver.manage().window().setSize(size);
+        //driver.manage().window().setSize(size);
     }
 
     @Override
