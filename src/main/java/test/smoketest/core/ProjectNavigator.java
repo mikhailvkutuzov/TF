@@ -20,7 +20,6 @@ import java.util.function.Supplier;
  */
 public class ProjectNavigator implements Navigator {
     private WebDriver driver;
-    private Dimension size = new Dimension(1600, 900);
     private String url;
 
     public ProjectNavigator(WebBrowsers browser, String url) {
@@ -37,7 +36,7 @@ public class ProjectNavigator implements Navigator {
                 break;
         }
 
-        //driver.manage().window().setSize(size);
+        driver.manage().window().maximize();
     }
 
     @Override
