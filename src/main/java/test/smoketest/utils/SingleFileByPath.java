@@ -25,7 +25,7 @@ public class SingleFileByPath implements FileFromResource {
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new UnknownError();
+            throw new UnknownError(e);
         } catch (IOException e) {
             path.delete();
             throw new ReadingError(e);

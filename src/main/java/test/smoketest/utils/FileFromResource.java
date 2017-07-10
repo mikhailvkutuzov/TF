@@ -30,6 +30,12 @@ public interface FileFromResource {
     }
 
     final class UnknownError extends RuntimeException {
+        public UnknownError() {
+        }
+
+        public UnknownError(Throwable cause) {
+            super(cause);
+        }
     }
 
 }
