@@ -27,6 +27,7 @@ public class ExecutableResource implements FileFromResource {
             Set<PosixFilePermission> permissions = new HashSet<>();
             permissions.add(PosixFilePermission.OWNER_READ);
             permissions.add(PosixFilePermission.OWNER_EXECUTE);
+            permissions.add(PosixFilePermission.OWNER_WRITE);
             permissions.add(PosixFilePermission.OTHERS_READ);
             permissions.add(PosixFilePermission.OTHERS_EXECUTE);
             try {
