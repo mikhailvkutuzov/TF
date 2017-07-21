@@ -104,6 +104,11 @@ public class ProjectNavigator implements Navigator {
         return waitForCondition(seconds, () -> textElement.getText().contains(value));
     }
 
+    @Override
+    public boolean waitForElementNotEmptyContent(TextContentElement element, int seconds) {
+        return waitForCondition(seconds, () -> element.getText() != null && element.getText().trim().length() > 0);
+    }
+
     private boolean waitForCondition(int seconds, Supplier<Boolean> testElement) {
         int i = 0 ;
         while (i < seconds) {

@@ -67,4 +67,6 @@ public interface Navigator {
      * @return
      */
     boolean waitForElementContent(TextContentElement element, String value, int seconds);
+
+    boolean waitForElementNotEmptyContent(TextContentElement element, int seconds);
 }
