@@ -37,13 +37,11 @@ public class ProjectNavigator implements Navigator {
         }
 
         WebDriver.Window window = driver.manage().window();
-/*
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
         }
         window.maximize();
-*/
     }
 
     @Override
