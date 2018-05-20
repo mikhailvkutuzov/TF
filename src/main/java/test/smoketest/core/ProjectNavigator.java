@@ -36,7 +36,12 @@ public class ProjectNavigator implements Navigator {
                 break;
         }
 
-        driver.manage().window().maximize();
+        WebDriver.Window window = driver.manage().window();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+        window.maximize();
     }
 
     @Override
